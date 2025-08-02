@@ -18,7 +18,7 @@ import {
 
 import { FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi';
 
-// import the images
+import PROJECT_IMG_1 from '../assets/images/SurveyRails.png';
 
 export const SKILLS_CATEGORY = [
   {
@@ -98,7 +98,7 @@ export const PROJECTS = [
     id: 1,
     title: 'E-commerce Platform',
     description: 'A full-stack e-commerce solution with advanced filtering, payment integration, and real time inventory management.',
-    //image: '/images/projects/ecommerce.png',
+    image: PROJECT_IMG_1,
     tags: ['React', 'Tailwind', 'Framer Motion'],
     liveUrl: '#',
     githubUrl: '#',
@@ -109,7 +109,7 @@ export const PROJECTS = [
     id: 2,
     title: 'Blog App with AI Post Generator',
     description: 'A full-stack blog app using the MERN stack - with full markdown support, tag filtering, and an integration with OpenAI for AI-generated posts.',
-    //image: '/images/projects/blog-ai.png',
+    image: PROJECT_IMG_1,
     tags: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
     liveUrl: '#',
     githubUrl: '#',
@@ -120,7 +120,7 @@ export const PROJECTS = [
     id: 3,
     title: 'Task Management App',
     description: 'Collaborative task management app with real-time updates, user authentication, and drag-and-drop functionality.',
-    //image: '/images/projects/portfolio.png',
+    image: PROJECT_IMG_1,
     tags: ['Next.js', 'TypeScript', 'Node.js', 'MongoDb'],
     liveUrl: '#',
     githubUrl: '#',
@@ -131,7 +131,7 @@ export const PROJECTS = [
     id: 4,
     title: 'AI-powered Interview Prep App',
     description: 'A Smart AI-powered interview preparation app that helps users practice coding interviews with real-time feedback and analytics.',
-    //image: '/images/projects/portfolio.png',
+    image: PROJECT_IMG_1,
     tags: ['Next.js', 'TypeScript', 'Node.js', 'MongoDb'],
     liveUrl: '#',
     githubUrl: '#',
@@ -142,7 +142,7 @@ export const PROJECTS = [
     id: 5,
     title: 'Resume Builder App',
     description: 'A fully functional resume builder app that allows users to create, edit, and download resumes in various formats.',
-    //image: '/images/projects/chat-app.png',
+    image: PROJECT_IMG_1,
     tags: ['Next.js', 'TypeScript', 'Node.js', 'MongoDb'],
     liveUrl: '#',
     githubUrl: '#',
@@ -153,7 +153,7 @@ export const PROJECTS = [
     id: 6,
     title: 'Expense Tracker App',
     description: 'A simple yet effective expense tracker app that helps users manage their finances with ease.',
-    //image: '/images/projects/expense-tracker.png',
+    image: PROJECT_IMG_1,
     tags: ['Next.js', 'TypeScript', 'Node.js', 'MongoDb'],
     liveUrl: '#',
     githubUrl: '#',
