@@ -339,7 +339,7 @@ function HeroSection() {
                     key={index}
                     href={social.href}
                     whileHover={{ y: -3, scale: 1.1 }}
-                    className={`p-3 rounded-b-full transition-colors ${
+                    className={`p-3 rounded-full transition-colors ${
                       isDarkMode
                         ? 'text-gray-400 hover:text-white hover:bg-gray-800'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
