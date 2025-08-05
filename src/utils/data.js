@@ -237,28 +237,28 @@ export const SOCIAL_LINKS = [
     icon: FiGithub,
     url: '#',
     color: 'hover:text-gray-400',
-    bgcolor: 'hover:bg-gray-800',
+    bgColor: 'hover:bg-gray-800',
   },
   {
     name: 'LinkedIn',
     icon: FiLinkedin,
     url: '#',
     color: 'hover:text-blue-400',
-    bgcolor: 'hover:bg-blue-500/10',
+    bgColor: 'hover:bg-blue-500/10',
   },
   {
     name: 'Twitter',
     icon: FiTwitter,
     url: '#',
     color: 'hover:text-blue-400',
-    bgcolor: 'hover:bg-blue-50',
+    bgColor: 'hover:bg-blue-50',
   },
   {
     name: 'Email',
     icon: Mail,
     url: 'mailto:daniel@example.com',
     color: 'hover:text-green-400',
-    bgcolor: 'hover:bg-green-500/10',
+    bgColor: 'hover:bg-green-500/10',
   },
 ];
 
