@@ -214,7 +214,7 @@ function HeroSection() {
               {/* Tech Stack - Mobile */}
               <motion.div
                 variants={itemVariants}
-                className='flex justify-center items-center space-x-4 text-xs uppercase tracking-widest flex-wrap'
+                className='flex justify-center items-center space-x-6 text-xs uppercase tracking-widest flex-wrap'
               >
                 <span
                   className={isDarkMode ? 'text-gray-600' : 'text-gray-500'}
