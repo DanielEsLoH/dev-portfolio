@@ -16,19 +16,19 @@ const Footer = () => {
     {
       name: "GitHub",
       icon: FiGithub,
-      url: "https://github.com/",
+      url: "https://github.com/DanielEsLoH",
       color: "hover:text-gray-400",
     },
     {
       name: "LinkedIn",
       icon: FiLinkedin,
-      url: "https://likedin.com/",
+      url: "https://www.linkedin.com/in/daniel-esteban-londoño-henao-b9212b1b9",
       color: "hover:text-blue-400",
     },
     {
       name: "Twitter",
       icon: FiTwitter,
-      url: "https://twitter.com/",
+      url: "https://twitter.com/Daniel_EsLoH",
       color: "hover:text-sky-400",
     },
     {

@@ -2,7 +2,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Mail } from "lucide-react";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { useTheme } from "../../context/ThemeContext";
-import { tr } from "framer-motion/client";
 import PROFILE_PIC from "../../assets/images/profile-img.jpg";
 import { containerVariants, itemVariants } from "../../utils/helper";
 
@@ -192,9 +191,9 @@ function HeroSection() {
                 className='flex justify-center space-x-6 mb-8'
               >
                 {[
-                  { icon: FiGithub, href: '#' },
-                  { icon: FiLinkedin, href: '#' },
-                  { icon: Mail, href: '#' },
+                  { icon: FiGithub, href: 'https://github.com/DanielEsLoH' },
+                  { icon: FiLinkedin, href: 'https://www.linkedin.com/in/daniel-esteban-londoño-henao-b9212b1b9' },
+                  { icon: Mail, href: 'mailto:daniel.esloh@gmail.com' },
 
                 ].map((social, index) => (
                   <motion.a
@@ -331,9 +330,9 @@ function HeroSection() {
                 className='flex space-x-6 mb-12'
               >
                 {[
-                  { icon: FiGithub, href: '#' },
-                  { icon: FiLinkedin, href: '#' },
-                  { icon: Mail, href: '#' },
+                  { icon: FiGithub, href: 'https://github.com/DanielEsLoH' },
+                  { icon: FiLinkedin, href: 'https://www.linkedin.com/in/daniel-esteban-londoño-henao-b9212b1b9' },
+                  { icon: Mail, href: 'mailto:daniel.esloh@gmail.com' },
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -397,7 +396,7 @@ function HeroSection() {
                   <span
                     className={isDarkMode ? 'text-gray-600' : 'text-gray-500'}
                   >
-                    MongoDB
+                    Ruby
                   </span>
                 </motion.div>
 
