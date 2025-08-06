@@ -5,7 +5,9 @@ import { ExternalLink } from 'lucide-react';
 import { FiGithub } from 'react-icons/fi';
 
 const ProjectCard = ({project, index, isDarkMode}) => {
-  const handleCardClick = () => {
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const handleCardClick = (e) => {
     if (showOverlay) return;
     e.preventDefault();
     setShowOverlay(true);
@@ -72,6 +74,7 @@ const ProjectCard = ({project, index, isDarkMode}) => {
         {/* Hover Overlay with CTA Buttons */}
         <motion.div
           initial={{ opacity: 0 }}
+          animate={{ opacity: showOverlay ? 1 : 0 }}
           whileHover={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
           className='absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center space-x-4'
