@@ -1,9 +1,16 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
 import { FiGithub } from 'react-icons/fi';
 
 const ProjectCard = ({project, index, isDarkMode}) => {
+  const handleCardClick = () => {
+    if (showOverlay) return;
+    e.preventDefault();
+    setShowOverlay(true);
+    setTimeout(() => setShowOverlay(false), 3000);
+  }
   const cardVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -23,6 +30,7 @@ const ProjectCard = ({project, index, isDarkMode}) => {
       transition: { duration: 0.3, ease: 'easeOut'},
     }}
     className='group relative'
+    onClick={handleCardClick}
   >
     <div
       className={`rounded-2xl overflow-hidden border transition-all duration-500 ${
@@ -67,6 +75,7 @@ const ProjectCard = ({project, index, isDarkMode}) => {
           whileHover={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
           className='absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center space-x-4'
+          onClick={(e) => e.stopPropagation()}
         >
           <motion.a
             href={project.liveUrl}
