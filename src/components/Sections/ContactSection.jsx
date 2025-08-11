@@ -34,19 +34,80 @@ const ContactSection = () => {
     });
   };
 
+  const validateForm = (data) => {
+    const missingFields = [];
+
+    if (!data.name.trim()) missingFields.push("Name");
+    if (!data.email.trim()) missingFields.push("Email");
+    if (!data.message.trim()) missingFields.push("Message");
+
+    if (missingFields.length > 0) {
+      return {
+        isValid: false,
+        error: `⚠️ Please fill in: ${missingFields.join(", ")}.`,
+      };
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
+      return {
+        isValid: false,
+        error: "⚠️ Please enter a valid email address.",
+      };
+    }
+
+    return { isValid: true, error: null };
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { isValid, error } = validateForm(formData);
+    if (!isValid) {
+      alert(error);
+      return;
+    }
+
     setIsSubmitting(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORM_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
 
-    //Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+      const result = await response.json();
 
-    setIsSubmitting(false);
-    setShowSuccess(true);
-    setFormData({ name: "", email: "", message: "" });
+      if (result.success) {
+        setShowSuccess(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setShowSuccess(false), 3000);
+      } else {
+        alert("❌ An error occurred while sending the message.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("❌ The message could not be sent.");
+    } finally {
+      setIsSubmitting(false);
+    }
 
-    // Auto hide success modal after 3 seconds
-    setTimeout(() => setShowSuccess(false), 3000);
+    // //Simulate API call
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // setIsSubmitting(false);
+    // setShowSuccess(true);
+    // setFormData({ name: "", email: "", message: "" });
+
+    // // Auto hide success modal after 3 seconds
+    // setTimeout(() => setShowSuccess(false), 3000);
   };
 
   return (
