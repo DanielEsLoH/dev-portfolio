@@ -116,21 +116,22 @@ const AboutSection = () => {
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}
               >
-                I believe technology should be a bridge that connects people and
-                solves real-world problems. My passion lies in crafting digital 
-                experiences that are not just functional, but delightful and
-                accessible to everyone.
+                My purpose is to create comprehensive digital experiences that 
+                efficiently connect the frontend and backend, using modern 
+                technologies like Ruby on Rails, React, Node.js, Express, 
+                MongoDB, and SQL. I'm passionate about solving real-world 
+                problems with user-centered technologies that meet business 
+                needs and deliver real value. I thrive in collaborative environments 
+                and am committed to continuous growth.
               </p>
               <p
                 className={`text-base leading-relaxed ${
                   isDarkMode ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                When I'm not coding, you'll find me exploring new frameworks, 
-                contributing to open source, or mentoring aspiring developers. I
-                love the constant evolution of web technologies and the endless 
-                possibilities they bring to create meaningful digital 
-                experiences.
+                I aim for every line of code I write to add value, be scalable, and 
+                always consider the end user. More than just building software, I 
+                enjoy crafting solutions that turn ideas into results.
               </p>
             </motion.div>
 

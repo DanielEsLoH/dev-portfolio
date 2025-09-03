@@ -21,6 +21,7 @@ import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
 import PROJECT_IMG_1 from "../assets/images/SurveyRails.png";
 import PROJECT_IMG_2 from "../assets/images/Portfolio.png";
 import PROJECT_IMG_3 from "../assets/images/Personal.jpg";
+import PROJECT_IMG_4 from "../assets/images/CarRental.png";
 
 export const SKILLS_CATEGORY = [
   {
@@ -28,11 +29,11 @@ export const SKILLS_CATEGORY = [
     icon: Code2,
     description: "Crafting beautiful, responsive user interfaces",
     skills: [
-      { name: "React", level: 95, color: "bg-blue-500" },
-      { name: "TypeScript", level: 90, color: "bg-blue-600" },
-      { name: "Next.js", level: 88, color: "bg-gray-800" },
-      { name: "Tailwind CSS", level: 92, color: "bg-cyan-500" },
-      { name: "Framer Motion", level: 85, color: "bg-pink-500" },
+      { name: "React", level: 80, color: "bg-blue-500" },
+      { name: "TypeScript", level: 65, color: "bg-blue-600" },
+      { name: "Next.js", level: 65, color: "bg-gray-800" },
+      { name: "Tailwind CSS", level: 80, color: "bg-cyan-500" },
+      { name: "Bootstrap", level: 70, color: "bg-pink-500" },
     ],
   },
   {
@@ -42,9 +43,9 @@ export const SKILLS_CATEGORY = [
     skills: [
       { name: "Ruby on Rails", level: 90, color: "bg-green-500" },
       { name: "Node.js", level: 70, color: "bg-gray-700" },
-      { name: "Express.js", level: 60, color: "bg-yellow-500" },
-      { name: "GraphQL", level: 80, color: "bg-pink-600" },
-      { name: "REST APIs", level: 90, color: "bg-orange-500" },
+      { name: "Express.js", level: 70, color: "bg-yellow-500" },
+      { name: "JavaScript", level: 70, color: "bg-pink-600" },
+      { name: "REST APIs", level: 80, color: "bg-orange-500" },
     ],
   },
   {
@@ -52,11 +53,11 @@ export const SKILLS_CATEGORY = [
     icon: Database,
     description: "Managing and optimizing data storage",
     skills: [
-      { name: "PostgreSQL", level: 88, color: "bg-green-600" },
-      { name: "MongoDB", level: 85, color: "bg-blue-700" },
-      { name: "Redis", level: 80, color: "bg-red-500" },
-      { name: "Prisma", level: 82, color: "bg-indigo-600" },
-      { name: "Firebase", level: 78, color: "bg-yellow-600" },
+      { name: "PostgreSQL", level: 80, color: "bg-green-600" },
+      { name: "MongoDB", level: 65, color: "bg-blue-700" },
+      { name: "Redis", level: 40, color: "bg-red-500" },
+      { name: "Prisma", level: 65, color: "bg-indigo-600" },
+      { name: "Firebase", level: 40, color: "bg-yellow-600" },
     ],
   },
   {
@@ -65,9 +66,9 @@ export const SKILLS_CATEGORY = [
     description: "Deploying and scaling applications",
     skills: [
       { name: "Docker", level: 82, color: "bg-blue-600" },
-      { name: "AWS", level: 78, color: "bg-orange-600" },
+      { name: "AWS", level: 60, color: "bg-orange-600" },
       { name: "Vercel", level: 90, color: "bg-gray-900" },
-      { name: "Git", level: 95, color: "bg-orange-700" },
+      { name: "Git", level: 99, color: "bg-orange-700" },
       { name: "CI/CD", level: 75, color: "bg-purple-600" },
     ],
   },
@@ -106,14 +107,14 @@ export const PROJECTS = [
     tags: ["Ruby on Rails", "Tailwind", "Hotwire", "PostgreSQL"],
     liveUrl: "https://surveyrails.fly.dev",
     githubUrl: "https://github.com/DanielEsLoH/course-rails",
-    featured: false,
+    featured: true,
     category: "Full Stack",
   },
   {
     id: 2,
     title: "Portfolio Website 1",
     description:
-      "A modern and responsive personal portfolio website built with ReactJS, showcasing featured projects, skills, and contact information. Includes smooth animations, dark mode support, and a clean user-friendly interface.",
+      "Responsive personal portfolio built with ReactJS, featuring projects, skills, contact info, and smooth UI with dark mode.",
     image: PROJECT_IMG_2,
     tags: ["React", "Node.js", "Tailwind"],
     liveUrl: "https://danielesloh.github.io/portfolio/",
@@ -123,15 +124,15 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    title: "Task Management App",
+    title: "CarRental App",
     description:
-      "Collaborative task management app with real-time updates, user authentication, and drag-and-drop functionality.",
-    image: PROJECT_IMG_3,
-    tags: ["Next.js", "TypeScript", "Node.js", "MongoDb"],
-    liveUrl: "#",
-    githubUrl: "#",
+      "Car rental booking app with real-time availability, secure user authentication, and streamlined reservation management.",
+    image: PROJECT_IMG_4,
+    tags: ["Express.js", "React", "Node.js", "MongoDb"],
+    liveUrl: "https://car-rental-phi-one.vercel.app/",
+    githubUrl: "https://github.com/DanielEsLoH/CarRental",
     featured: true,
-    category: "Web App",
+    category: "Full Stack",
   },
   {
     id: 4,
@@ -173,20 +174,20 @@ export const PROJECTS = [
 
 export const JOURNEY_STEPS = [
   {
-    year: "2021",
+    year: "2020",
     title: "Starting Coding Journey",
-    company: "Self-taught",
+    company: "Make It Real",
     description:
-      "Began learning web development through online courses and tutorials.",
+      "Completed a one-year intensive in-person bootcamp focused on full-stack web development, gaining comprehensive knowledge of both front-end and back-end technologies.",
     icon: Code2,
     color: "bg-blue-500",
   },
   {
-    year: "2022",
-    title: "First Internship",
-    company: "TechStart Inc.",
+    year: "2021",
+    title: "Self-Directed Learning and Programming Growth",
+    company: "Udemy, YouTube",
     description:
-      "Joined a startup as a junior developer, working on various projects and gaining hands-on experience.",
+      "Spent the following year further developing programming expertise through continuous practice, personal projects, and self-directed learning.",
     icon: Briefcase,
     color: "bg-green-500",
   },
@@ -201,28 +202,28 @@ export const JOURNEY_STEPS = [
   },
   {
     year: "2023",
-    title: "Full Stack Developer at Tech Company",
-    company: "Tech Company",
+    title: "Backend Developer",
+    company: "Freelance",
     description:
-      "Currently working as a full stack developer, focusing on building scalable web applications.",
+      "Freelance Backend Developer, building scalable web applications and backend systems with Ruby on Rails, delivering secure APIs and efficient database management.",
     icon: Rocket,
     color: "bg-orange-500",
   },
   {
     year: "2024",
-    title: "Open Source Contributions",
-    company: "Open Source Community",
+    title: "Full-Stack Development with Ruby on Rails 7 & Hotwire",
+    company: "Learning Platform",
     description:
-      "Contributed to various open source projects, enhancing skills and giving back to the community.",
+      "Focused on mastering full-stack development with Ruby on Rails 7, exploring Hotwire (Turbo & Stimulus) to create dynamic, real-time applications with minimal JavaScript.",
     icon: Award,
     color: "bg-pink-500",
   },
   {
     year: "2025",
-    title: "Mentoring and Teaching",
-    company: "Self-Employed",
+    title: "Building Full-Stack Applications with Modern JS Frameworks",
+    company: "Freelance",
     description:
-      "Started mentoring aspiring developers and teaching web development through online platforms.",
+      "Developed personal projects and client websites using Node.js, Express.js, React, and Next.js, building both backend–frontend architectures and full-stack applications with responsive design.",
     icon: Zap,
     color: "bg-cyan-500",
   },
