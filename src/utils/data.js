@@ -50,7 +50,7 @@ export const SKILLS_CATEGORY = [
     skills: [
       { name: "React", level: 80, color: "bg-blue-500" },
       { name: "TypeScript", level: 65, color: "bg-blue-600" },
-      { name: "Next.js", level: 65, color: "bg-gray-800" },
+      { name: "Next.js", level: 65, color: "bg-slate-500" },
       { name: "Tailwind CSS", level: 80, color: "bg-cyan-500" },
       { name: "Bootstrap", level: 70, color: "bg-pink-500" },
     ],
@@ -61,7 +61,7 @@ export const SKILLS_CATEGORY = [
     description: "Building robust server-side solutions",
     skills: [
       { name: "Ruby on Rails", level: 90, color: "bg-green-500" },
-      { name: "Node.js", level: 70, color: "bg-gray-700" },
+      { name: "Node.js", level: 70, color: "bg-green-600" },
       { name: "Express.js", level: 70, color: "bg-yellow-500" },
       { name: "JavaScript", level: 70, color: "bg-pink-600" },
       { name: "REST APIs", level: 80, color: "bg-orange-500" },
@@ -86,7 +86,7 @@ export const SKILLS_CATEGORY = [
     skills: [
       { name: "Docker", level: 82, color: "bg-blue-600" },
       { name: "AWS", level: 60, color: "bg-orange-600" },
-      { name: "Vercel", level: 90, color: "bg-gray-900" },
+      { name: "Vercel", level: 90, color: "bg-violet-600" },
       { name: "Git", level: 99, color: "bg-orange-700" },
       { name: "CI/CD", level: 75, color: "bg-purple-600" },
     ],

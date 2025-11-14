@@ -214,7 +214,7 @@ function HeroSection() {
               {/* Tech Stack - Mobile */}
               <motion.div
                 variants={itemVariants}
-                className='flex flex-nowrap justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 text-xs uppercase tracking-tight sm:tracking-wide md:tracking-widest'
+                className='w-[80%] sm:w-[85%] mx-auto flex flex-nowrap justify-between items-center text-xs uppercase tracking-tight sm:tracking-wide md:tracking-widest mt-6'
               >
                 <span
                   className={isDarkMode ? 'text-gray-600' : 'text-gray-500'}
@@ -361,7 +361,7 @@ function HeroSection() {
                 {/* Tech Stack - Desktop */}
                 <motion.div
                   variants={itemVariants}
-                  className='flex flex-nowrap items-center space-x-2 sm:space-x-4 md:space-x-5 xl:space-x-8 text-xs uppercase tracking-tight sm:tracking-wide md:tracking-wider xl:tracking-widest absolute -top-16 left-1/2 -translate-x-1/2'
+                  className='flex flex-nowrap items-center space-x-2 sm:space-x-4 md:space-x-5 xl:space-x-5 2xl:space-x-8 text-xs uppercase tracking-tight sm:tracking-wide md:tracking-wider xl:tracking-widest absolute -top-16 left-1/2 -translate-x-1/2'
                 >
                   <span
                     className={isDarkMode ? 'text-gray-600' : 'text-gray-500'}
