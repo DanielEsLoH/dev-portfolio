@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { Code2, Sun, Moon, Menu, X } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
@@ -6,6 +6,50 @@ import { useTheme } from "../context/ThemeContext";
 const Navbar = () => {
   const { isDarkMode, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  // Track active section on scroll
+  useEffect(() => {
+    const sections = ["home", "skills", "work", "about", "contact"];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200; // Offset from top of viewport
+
+      // Find current section based on scroll position
+      let current = "home";
+
+      sections.forEach((sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
+
+          // Check if scroll position is within this section
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            current = sectionId;
+          }
+        }
+      });
+
+      setActiveSection(current);
+    };
+
+    // Set initial active section
+    handleScroll();
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Re-check after delays for lazy-loaded sections
+    const timeout1 = setTimeout(handleScroll, 500);
+    const timeout2 = setTimeout(handleScroll, 1500);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -42,22 +86,44 @@ const Navbar = () => {
         </motion.div>
 
         {/*Desktop Navigagtion*/}
-        <div className="hidden md:flex items-center space-x-8">
-          {["Home", "Skills", "Work", "About", "Contact"].map((item) => (
-            <motion.button
-              key={item}
-              whileHover={{ y: -2 }}
-              onClick={() => scrollToSection(item.toLowerCase())}
-              style={{ cursor: "pointer" }}
-              className={`text-sm uppercase tracking-wider transition-colors ${
-                isDarkMode
-                  ? "text-gray-400 hover:text-white"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              {item}
-            </motion.button>
-          ))}
+        <div className="hidden md:flex items-center space-x-2">
+          {["Home", "Skills", "Work", "About", "Contact"].map((item) => {
+            const isActive = activeSection === item.toLowerCase();
+            return (
+              <motion.button
+                key={item}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection(item.toLowerCase())}
+                style={{ cursor: "pointer" }}
+                className={`relative px-4 py-2 text-sm uppercase tracking-wider rounded-full transition-all duration-300 ${
+                  isActive
+                    ? isDarkMode
+                      ? "text-white"
+                      : "text-gray-900"
+                    : isDarkMode
+                    ? "text-gray-400 hover:text-white"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                {/* Animated background pill */}
+                {isActive && (
+                  <motion.div
+                    layoutId="navbar-pill"
+                    className={`absolute inset-0 rounded-full ${
+                      isDarkMode
+                        ? "bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30"
+                        : "bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
+                    }`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  />
+                )}
+                <span className="relative z-10">{item}</span>
+              </motion.button>
+            );
+          })}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -113,20 +179,53 @@ const Navbar = () => {
               isDarkMode ? "bg-gray-900" : "bg-white"
             } border ${isDarkMode ? "border-gray-800" : "border-gray-200"}`}
           >
-            {["Home", "Skills", "Work", "About", "Contact"].map((item) => (
-              <motion.button
-                key={item}
-                whileHover={{ x: 5 }}
-                onClick={() => scrollToSection(item.toLowerCase())}
-                className={`block w-full text-left py-2 text-sm uppercase tracking-wider transition-colors ${
-                  isDarkMode
-                    ? "text-gray-400 hover:text-white"
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                {item}
-              </motion.button>
-            ))}
+            {["Home", "Skills", "Work", "About", "Contact"].map((item) => {
+              const isActive = activeSection === item.toLowerCase();
+              return (
+                <motion.button
+                  key={item}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className={`relative block w-full text-left px-4 py-3 text-sm uppercase tracking-wider rounded-lg transition-all duration-300 ${
+                    isActive
+                      ? isDarkMode
+                        ? "text-white"
+                        : "text-gray-900"
+                      : isDarkMode
+                      ? "text-gray-400 hover:text-white"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
+                >
+                  {/* Animated background for mobile */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="mobile-navbar-pill"
+                      className={`absolute inset-0 rounded-lg ${
+                        isDarkMode
+                          ? "bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30"
+                          : "bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
+                      }`}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center">
+                    {/* Active indicator icon */}
+                    {isActive && (
+                      <motion.span
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="inline-block w-1.5 h-1.5 rounded-full bg-blue-500 mr-3 shadow-lg shadow-blue-500/50"
+                      />
+                    )}
+                    {item}
+                  </span>
+                </motion.button>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>

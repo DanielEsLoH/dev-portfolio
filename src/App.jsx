@@ -22,14 +22,24 @@ function App() {
     <ThemeProvider>
       <div>
         <Navbar />
-        <HeroSection />
-        <SkillsSection />
+        <div id="home">
+          <HeroSection />
+        </div>
+        <div id="skills">
+          <SkillsSection />
+        </div>
 
         {/* Lazy loaded sections wrapped in Suspense */}
         <Suspense fallback={<SectionLoader />}>
-          <ProjectsSection />
-          <AboutSection />
-          <ContactSection />
+          <div id="work">
+            <ProjectsSection />
+          </div>
+          <div id="about">
+            <AboutSection />
+          </div>
+          <div id="contact">
+            <ContactSection />
+          </div>
           <Footer />
         </Suspense>
       </div>

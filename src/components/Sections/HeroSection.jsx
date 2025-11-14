@@ -214,7 +214,7 @@ function HeroSection() {
               {/* Tech Stack - Mobile */}
               <motion.div
                 variants={itemVariants}
-                className='flex justify-center items-center space-x-6 text-xs uppercase tracking-widest flex-wrap'
+                className='flex flex-nowrap justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 text-xs uppercase tracking-tight sm:tracking-wide md:tracking-widest'
               >
                 <span
                   className={isDarkMode ? 'text-gray-600' : 'text-gray-500'}
@@ -249,7 +249,7 @@ function HeroSection() {
                 <span
                   className={isDarkMode ? 'text-gray-600' : 'text-gray-500'}
                 >
-                  MongoDB
+                  Ruby
                 </span>
               </motion.div>
             </motion.div>
@@ -361,7 +361,7 @@ function HeroSection() {
                 {/* Tech Stack - Desktop */}
                 <motion.div
                   variants={itemVariants}
-                  className='flex items-center space-x-8 text-xs uppercase tracking-widest absolute -top-16 -left-28'
+                  className='flex flex-nowrap items-center space-x-2 sm:space-x-4 md:space-x-5 xl:space-x-8 text-xs uppercase tracking-tight sm:tracking-wide md:tracking-wider xl:tracking-widest absolute -top-16 left-1/2 -translate-x-1/2'
                 >
                   <span
                     className={isDarkMode ? 'text-gray-600' : 'text-gray-500'}
