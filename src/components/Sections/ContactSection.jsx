@@ -14,6 +14,12 @@ const ContactSection = () => {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [formError, setFormError] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -32,42 +38,82 @@ const ContactSection = () => {
       ...formData,
       [key]: value,
     });
+    // Clear field error when user starts typing
+    if (errors[key]) {
+      setErrors({
+        ...errors,
+        [key]: "",
+      });
+    }
+    // Clear form error when user makes changes
+    if (formError) {
+      setFormError("");
+    }
+  };
+
+  const validateField = (name, value) => {
+    let error = "";
+
+    switch (name) {
+      case "name":
+        if (!value.trim()) {
+          error = "Name is required";
+        }
+        break;
+      case "email":
+        if (!value.trim()) {
+          error = "Email is required";
+        } else {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) {
+            error = "Please enter a valid email address";
+          }
+        }
+        break;
+      case "message":
+        if (!value.trim()) {
+          error = "Message is required";
+        }
+        break;
+      default:
+        break;
+    }
+
+    return error;
+  };
+
+  const handleBlur = (field) => {
+    const error = validateField(field, formData[field]);
+    setErrors({
+      ...errors,
+      [field]: error,
+    });
   };
 
   const validateForm = (data) => {
-    const missingFields = [];
+    const newErrors = {
+      name: validateField("name", data.name),
+      email: validateField("email", data.email),
+      message: validateField("message", data.message),
+    };
 
-    if (!data.name.trim()) missingFields.push("Name");
-    if (!data.email.trim()) missingFields.push("Email");
-    if (!data.message.trim()) missingFields.push("Message");
+    setErrors(newErrors);
 
-    if (missingFields.length > 0) {
-      return {
-        isValid: false,
-        error: `⚠️ Please fill in: ${missingFields.join(", ")}.`,
-      };
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-      return {
-        isValid: false,
-        error: "⚠️ Please enter a valid email address.",
-      };
-    }
-
-    return { isValid: true, error: null };
+    const hasErrors = Object.values(newErrors).some((error) => error !== "");
+    return { isValid: !hasErrors, errors: newErrors };
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { isValid, error } = validateForm(formData);
+    const { isValid } = validateForm(formData);
     if (!isValid) {
-      alert(error);
+      setFormError("Please fix the errors above before submitting.");
       return;
     }
 
     setIsSubmitting(true);
+    setFormError("");
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -88,26 +134,22 @@ const ContactSection = () => {
       if (result.success) {
         setShowSuccess(true);
         setFormData({ name: "", email: "", message: "" });
+        setErrors({ name: "", email: "", message: "" });
+        setFormError("");
         setTimeout(() => setShowSuccess(false), 3000);
       } else {
-        alert("❌ An error occurred while sending the message.");
+        setFormError(
+          "An error occurred while sending the message. Please try again."
+        );
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("❌ The message could not be sent.");
+      setFormError(
+        "The message could not be sent. Please check your connection and try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
-
-    // //Simulate API call
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // setIsSubmitting(false);
-    // setShowSuccess(true);
-    // setFormData({ name: "", email: "", message: "" });
-
-    // // Auto hide success modal after 3 seconds
-    // setTimeout(() => setShowSuccess(false), 3000);
   };
 
   return (
@@ -185,43 +227,71 @@ const ContactSection = () => {
             >
               <h3 className="text-2xl font-medium mb-8">Send me a message</h3>
 
-              <div className="space-y-6">
+              {/* Form Error Message - Live Region */}
+              {formError && (
+                <div
+                  className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 flex items-center"
+                  role="alert"
+                  aria-live="polite"
+                >
+                  <span className="mr-2">⚠</span>
+                  {formError}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div className="grid md:grid-cols-2 gap-6">
                   <TextInput
                     isDarkMode={isDarkMode}
+                    id="contact-name"
+                    name="name"
                     value={formData.name}
                     handleInputChange={(text) =>
                       handleInputChange("name", text)
                     }
-                    label={"Your Name"}
+                    onBlur={() => handleBlur("name")}
+                    label="Your Name"
+                    required
+                    error={errors.name}
                   />
 
                   <TextInput
                     isDarkMode={isDarkMode}
-                    label={"Email Address"}
+                    id="contact-email"
+                    name="email"
+                    label="Email Address"
                     value={formData.email}
                     handleInputChange={(text) =>
                       handleInputChange("email", text)
                     }
+                    onBlur={() => handleBlur("email")}
+                    required
+                    error={errors.email}
                   />
                 </div>
 
                 <TextInput
                   isDarkMode={isDarkMode}
-                  label={"Your Message"}
+                  id="contact-message"
+                  name="message"
+                  label="Your Message"
                   value={formData.message}
                   textarea
                   handleInputChange={(text) =>
                     handleInputChange("message", text)
                   }
+                  onBlur={() => handleBlur("message")}
+                  required
+                  error={errors.message}
                 />
 
                 <motion.button
+                  type="submit"
                   disabled={isSubmitting}
                   whileHover={{ y: -2, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-400 text-white py-4 rounded-xl text-sm uppercase tracking-wider font-medium transition-all duration-300 flex items-center justify-center space-x-2"
-                  onClick={handleSubmit}
+                  aria-label={isSubmitting ? "Sending message" : "Send message"}
                 >
                   {isSubmitting ? (
                     <>
@@ -243,7 +313,7 @@ const ContactSection = () => {
                     </>
                   )}
                 </motion.button>
-              </div>
+              </form>
             </motion.div>
           </motion.div>
 
@@ -258,7 +328,7 @@ const ContactSection = () => {
             <motion.div variants={itemVariants}>
               <h3 className="text-2xl font-medium mb-6">Contact Information</h3>
               <div className="space-y-4">
-                {CONTACT_INFO.map((info, index) => (
+                {CONTACT_INFO.map((info) => (
                   <motion.div
                     key={info.label}
                     variants={itemVariants}

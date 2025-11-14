@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { motion, useScroll, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Sun, Moon, Menu, X } from "lucide-react";
+import FocusTrap from "focus-trap-react";
 import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
@@ -50,6 +51,34 @@ const Navbar = () => {
       clearTimeout(timeout2);
     };
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  // Handle ESC key to close menu
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === "Escape" && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [isMenuOpen]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -134,8 +163,9 @@ const Navbar = () => {
                 ? "text-gray-400 hover:text-white hover:bg-gray-800"
                 : "text-gray-600 hover:text-gray-900 hover:bg-gray-200"
             }`}
+            aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
           >
-            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            {isDarkMode ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
           </motion.button>
         </div>
 
@@ -150,8 +180,9 @@ const Navbar = () => {
                 ? "text-gray-400 hover:text-white hover:bg-gray-800"
                 : "text-gray-600 hover:text-gray-900 hover:bg-gray-200"
             }`}
+            aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
           >
-            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            {isDarkMode ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -162,8 +193,11 @@ const Navbar = () => {
                 ? "text-gray-400 hover:text-white hover:bg-gray-800"
                 : "text-gray-600 hover:text-gray-900 hover:bg-gray-200"
             }`}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {isMenuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </motion.button>
         </div>
       </div>
@@ -171,14 +205,23 @@ const Navbar = () => {
       {/*Mobile Menu*/}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className={`md:hidden mt-4 p-4 rounded-lg ${
-              isDarkMode ? "bg-gray-900" : "bg-white"
-            } border ${isDarkMode ? "border-gray-800" : "border-gray-200"}`}
+          <FocusTrap
+            focusTrapOptions={{
+              initialFocus: false,
+              allowOutsideClick: true,
+            }}
           >
+            <motion.div
+              id="mobile-menu"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className={`md:hidden mt-4 p-4 rounded-lg ${
+                isDarkMode ? "bg-gray-900" : "bg-white"
+              } border ${isDarkMode ? "border-gray-800" : "border-gray-200"}`}
+              role="navigation"
+              aria-label="Mobile navigation menu"
+            >
             {["Home", "Skills", "Work", "About", "Contact"].map((item) => {
               const isActive = activeSection === item.toLowerCase();
               return (
@@ -226,7 +269,8 @@ const Navbar = () => {
                 </motion.button>
               );
             })}
-          </motion.div>
+            </motion.div>
+          </FocusTrap>
         )}
       </AnimatePresence>
     </motion.nav>
