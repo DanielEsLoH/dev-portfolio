@@ -18,11 +18,29 @@ import {
 
 import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
 
-import PROJECT_IMG_1 from "../assets/images/SurveyRails.png";
-import PROJECT_IMG_2 from "../assets/images/Portfolio.png";
+// Optimized WebP images
+import PROJECT_IMG_1 from "../assets/images/optimized/SurveyRails.webp";
+import PROJECT_IMG_2 from "../assets/images/optimized/Portfolio.webp";
 import PROJECT_IMG_3 from "../assets/images/Personal.jpg";
-import PROJECT_IMG_4 from "../assets/images/CarRental.png";
-import PROJECT_IMG_5 from "../assets/images/SyncSpace.png";
+import PROJECT_IMG_4 from "../assets/images/optimized/CarRental.webp";
+import PROJECT_IMG_5 from "../assets/images/optimized/SyncSpace.webp";
+
+// Responsive variants for srcset
+import PROJECT_IMG_1_400 from "../assets/images/optimized/SurveyRails-400w.webp";
+import PROJECT_IMG_1_800 from "../assets/images/optimized/SurveyRails-800w.webp";
+import PROJECT_IMG_1_1200 from "../assets/images/optimized/SurveyRails-1200w.webp";
+
+import PROJECT_IMG_2_400 from "../assets/images/optimized/Portfolio-400w.webp";
+import PROJECT_IMG_2_800 from "../assets/images/optimized/Portfolio-800w.webp";
+import PROJECT_IMG_2_1200 from "../assets/images/optimized/Portfolio-1200w.webp";
+
+import PROJECT_IMG_4_400 from "../assets/images/optimized/CarRental-400w.webp";
+import PROJECT_IMG_4_800 from "../assets/images/optimized/CarRental-800w.webp";
+import PROJECT_IMG_4_1200 from "../assets/images/optimized/CarRental-1200w.webp";
+
+import PROJECT_IMG_5_400 from "../assets/images/optimized/SyncSpace-400w.webp";
+import PROJECT_IMG_5_800 from "../assets/images/optimized/SyncSpace-800w.webp";
+import PROJECT_IMG_5_1200 from "../assets/images/optimized/SyncSpace-1200w.webp";
 
 export const SKILLS_CATEGORY = [
   {
@@ -105,6 +123,7 @@ export const PROJECTS = [
     description:
       "A full-stack survey application with advanced analytics and real-time feedback.",
     image: PROJECT_IMG_1,
+    imageSrcSet: `${PROJECT_IMG_1_400} 400w, ${PROJECT_IMG_1_800} 800w, ${PROJECT_IMG_1_1200} 1200w`,
     tags: ["Ruby on Rails", "Tailwind", "Hotwire", "PostgreSQL"],
     liveUrl: "https://surveyrails.fly.dev",
     githubUrl: "https://github.com/DanielEsLoH/course-rails",
@@ -117,6 +136,7 @@ export const PROJECTS = [
     description:
       "Responsive personal portfolio built with ReactJS, featuring projects, skills, contact info, and smooth UI with dark mode.",
     image: PROJECT_IMG_2,
+    imageSrcSet: `${PROJECT_IMG_2_400} 400w, ${PROJECT_IMG_2_800} 800w, ${PROJECT_IMG_2_1200} 1200w`,
     tags: ["React", "Node.js", "Tailwind"],
     liveUrl: "https://danielesloh.github.io/portfolio/",
     githubUrl: "https://github.com/DanielEsLoH/portfolio",
@@ -129,6 +149,7 @@ export const PROJECTS = [
     description:
       "Car rental booking app with real-time availability, secure user authentication, and streamlined reservation management.",
     image: PROJECT_IMG_4,
+    imageSrcSet: `${PROJECT_IMG_4_400} 400w, ${PROJECT_IMG_4_800} 800w, ${PROJECT_IMG_4_1200} 1200w`,
     tags: ["Express.js", "React", "Node.js", "MongoDb"],
     liveUrl: "https://car-rental-phi-one.vercel.app/",
     githubUrl: "https://github.com/DanielEsLoH/CarRental",
@@ -141,6 +162,7 @@ export const PROJECTS = [
     description:
       "A modern real-time social platform built with Next.js 16 and Ruby on Rails 8 — share ideas, connect instantly, and experience live updates across posts, comments, reactions and notifications.",
     image: PROJECT_IMG_5,
+    imageSrcSet: `${PROJECT_IMG_5_400} 400w, ${PROJECT_IMG_5_800} 800w, ${PROJECT_IMG_5_1200} 1200w`,
     tags: [
       "Next.js 16",
       "React 19",

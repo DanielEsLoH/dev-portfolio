@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Mail } from "lucide-react";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { useTheme } from "../../context/ThemeContext";
-import PROFILE_PIC from "../../assets/images/profile-img.jpg";
+import PROFILE_PIC from "../../assets/images/optimized/profile-img.webp";
 import { containerVariants, itemVariants } from "../../utils/helper";
 
 function HeroSection() {
