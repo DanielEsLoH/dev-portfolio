@@ -6,12 +6,18 @@ import { FiGithub } from 'react-icons/fi';
 
 const ProjectCard = ({project, index, isDarkMode}) => {
   const [showOverlay, setShowOverlay] = useState(false);
+  const [isInteractionReady, setIsInteractionReady] = useState(false);
 
   const handleCardClick = (e) => {
     if (showOverlay) return;
     e.preventDefault();
     setShowOverlay(true);
-    setTimeout(() => setShowOverlay(false), 3000);
+    // Delay making links interactive to prevent immediate click on mobile
+    setTimeout(() => setIsInteractionReady(true), 100);
+    setTimeout(() => {
+      setShowOverlay(false);
+      setIsInteractionReady(false);
+    }, 5000);
   }
   const cardVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -75,18 +81,25 @@ const ProjectCard = ({project, index, isDarkMode}) => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: showOverlay ? 1 : 0 }}
-          whileHover={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
           className='absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center space-x-4'
+          style={{ pointerEvents: showOverlay ? 'auto' : 'none' }}
           onClick={(e) => e.stopPropagation()}
+          onMouseEnter={() => setShowOverlay(true)}
+          onMouseLeave={() => setShowOverlay(false)}
         >
           <motion.a
             href={project.liveUrl}
             target='_blank'
             rel='noopener noreferrer'
-            initial={{ y: 20, opacity: 0.5 }}
-            whileHover={{ y: 0, opacity: 1, scale: 1.05 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{
+              scale: showOverlay ? 1 : 0.8,
+              opacity: showOverlay ? 1 : 0
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            style={{ pointerEvents: isInteractionReady ? 'auto' : 'none' }}
             className='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full flex items-center space-x-2 text-sm font-medium transition-colors'
           >
             <ExternalLink size={16} />
@@ -97,9 +110,15 @@ const ProjectCard = ({project, index, isDarkMode}) => {
             href={project.githubUrl}
             target='_blank'
             rel='noopener noreferrer'
-            initial={{ y: 20, opacity: 0.5 }}
-            whileHover={{ y: 0, opacity: 1, scale: 1.05 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{
+              scale: showOverlay ? 1 : 0.8,
+              opacity: showOverlay ? 1 : 0
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2, delay: 0.05 }}
+            style={{ pointerEvents: isInteractionReady ? 'auto' : 'none' }}
             className={`border-2 border-white text-white hover:bg-white hover:text-gray-900 px-4 py-2 rounded-full flex items-center space-x-2 text-sm font-medium transition-all`}
           >
             <FiGithub size={16} />
