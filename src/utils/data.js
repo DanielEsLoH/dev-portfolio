@@ -22,6 +22,7 @@ import PROJECT_IMG_1 from "../assets/images/SurveyRails.png";
 import PROJECT_IMG_2 from "../assets/images/Portfolio.png";
 import PROJECT_IMG_3 from "../assets/images/Personal.jpg";
 import PROJECT_IMG_4 from "../assets/images/CarRental.png";
+import PROJECT_IMG_5 from "../assets/images/SyncSpace.png";
 
 export const SKILLS_CATEGORY = [
   {
@@ -136,15 +137,22 @@ export const PROJECTS = [
   },
   {
     id: 4,
-    title: "AI-powered Interview Prep App",
+    title: "SyncSpace",
     description:
-      "A Smart AI-powered interview preparation app that helps users practice coding interviews with real-time feedback and analytics.",
-    image: PROJECT_IMG_3,
-    tags: ["Next.js", "TypeScript", "Node.js", "MongoDb"],
-    liveUrl: "#",
-    githubUrl: "#",
-    featured: false,
-    category: "Web App",
+      "A modern real-time social platform built with Next.js 16 and Ruby on Rails 8 — share ideas, connect instantly, and experience live updates across posts, comments, reactions and notifications.",
+    image: PROJECT_IMG_5,
+    tags: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Ruby on Rails 8",
+      "PostgreSQL 17",
+      "WebSockets",
+    ],
+    liveUrl: "https://sync-space-cyan.vercel.app",
+    githubUrl: "https://github.com/DanielEsLoH/SyncSpace",
+    featured: true,
+    category: "Full Stack",
   },
   {
     id: 5,
