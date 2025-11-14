@@ -4,7 +4,7 @@ import { Code2, Sun, Moon, Menu, X } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
-  const { isDarkMode, toggleDarkMode } = useTheme();
+  const { isDarkMode, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
@@ -61,7 +61,7 @@ const Navbar = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => toggleDarkMode(isDarkMode ? "light" : "dark")}
+            onClick={toggleTheme}
             style={{ cursor: "pointer" }}
             className={`p-2 rounded-full transition-colors ${
               isDarkMode
@@ -78,7 +78,7 @@ const Navbar = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => toggleDarkMode(isDarkMode ? "light" : "dark")}
+            onClick={toggleTheme}
             className={`p-2 rounded-full transition-colors ${
               isDarkMode
                 ? "text-gray-400 hover:text-white hover:bg-gray-800"

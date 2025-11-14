@@ -48,7 +48,7 @@ const ProjectsSection = () => {
             isDarkMode ? 'text-gray-500' : 'text-gray-600'
           } mb-4`}
         >
-          Feautured Work
+          Featured Work
         </motion.div>
 
         <motion.h2

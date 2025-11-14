@@ -233,7 +233,7 @@ export const PASSIONS = [
   {
     icon: Heart,
     title: "User Experience",
-    description: "Capting intuitive interfaces taht users love",
+    description: "Crafting intuitive interfaces that users love",
   },
   {
     icon: Coffee,

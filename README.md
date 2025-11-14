@@ -65,8 +65,31 @@ To run the project locally:
 git clone https://github.com/DanielEsLoH/portfolio
 cd portfolio
 npm install
+```
+
+### Environment Setup
+
+1. Copy the example environment file:
+```bash
+cp .env.example .env
+```
+
+2. Get your Web3Forms API key from [https://web3forms.com/](https://web3forms.com/) (it's free!)
+
+3. Open `.env` and add your API key:
+```
+VITE_WEB3FORM_KEY=your_actual_api_key_here
+```
+
+### Start Development Server
+
+```bash
 npm run dev
-📦 Scripts
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## 📦 Scripts
 npm run dev – Start the local development server
 npm run build – Build the project for production
 npm run preview – Preview the production build locally

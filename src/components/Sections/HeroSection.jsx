@@ -154,7 +154,7 @@ function HeroSection() {
                   isDarkMode ? 'text-gray-400' : 'text-gray-600'
                 } mb-8 max-w-xl mx-auto font-light leading-relaxed`}
               >
-                I craft beautiful, functioal web applications with modern
+                I craft beautiful, functional web applications with modern
                 technologies and thoughtful user experiences.
               </motion.p>
 

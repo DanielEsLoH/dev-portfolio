@@ -293,7 +293,7 @@ const ContactSection = () => {
 
             {/* Social Links */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-mediummb-6">Follow Me</h3>
+              <h3 className="text-xl font-medium mb-6">Follow Me</h3>
               <div className="grid grid-cols-2 gap-4">
                 {SOCIAL_LINKS.map((social) => (
                   <motion.a
